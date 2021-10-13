@@ -47,7 +47,6 @@ const CoinInfo = ({ coin }) => {
 
   useEffect(() => {
     fetchHistoricData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [days]);
 
   const darkTheme = createTheme({
@@ -73,17 +72,17 @@ const CoinInfo = ({ coin }) => {
             <Line
               data={{
                 labels: historicData.map((coin) => {
-                  let date = new Date(coin[0]);
+                  let date = new Date(coin[0]); //Date at 0th pos
                   let time =
                     date.getHours() > 12
                       ? `${date.getHours() - 12}:${date.getMinutes()} PM`
                       : `${date.getHours()}:${date.getMinutes()} AM`;
                   return days === 1 ? time : date.toLocaleDateString();
-                }),
+                }), //Normal JS function to get date in 12 hrs format
 
                 datasets: [
                   {
-                    data: historicData.map((coin) => coin[1]),
+                    data: historicData.map((coin) => coin[1]), //Price at 1st pos
                     label: `Price ( Past ${days} Days ) in ${currency}`,
                     borderColor: "#EEBC1D",
                   },
